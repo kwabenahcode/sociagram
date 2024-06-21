@@ -16,4 +16,17 @@ class User(AbstractBaseUser, PermissionsMixin):
     created = models.DecimalField(auto_now=True)
     updated = models.DateTimeField(auto_now_add=True)
 
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['username']
+
+    objects = UserManager()
+
+    def __str__(self):
+        return self.email
+
+
+    @property
+    def __str__(self) -> str:
+        return (f"{self.first_name} {self.last_name}")
     
+
