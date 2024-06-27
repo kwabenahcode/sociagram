@@ -4,7 +4,7 @@ from .models import *
 
 class UserSerializer(serializers.ModelSerializer):
     id = serializers.UUIDField(source='public_id', read_only=True, format='hex')
-    created = serializers.CharField(read_only=True)
+    created = serializers.CharField(source='created_at', read_only=True)
     updated = serializers.CharField(read_only=True)
 
     class Meta:
@@ -14,12 +14,12 @@ class UserSerializer(serializers.ModelSerializer):
                   'email', 
                   'first_name', 
                   'last_name', 
-                  'bio',
-                  'avatar',
+                #   'bio',
+                #   'avatar',
                   'created',
                   'updated',
                   'is_active',
                   ]
         read_only_field = ['is_active']
-        
+
     

@@ -10,16 +10,15 @@ from .serializers import *
 
 class UserViewSet(viewsets.ModelViewSet):
     http_method_names = ('patch', 'get')
-    permission_classes = (AllowAny)
+    permission_classes = (AllowAny,)
     serializer_class = UserSerializer
 
     def get_queryset(self):
-        if self.request.is_superuser:
-            user = User.objects.all()
+        if self.request.user.is_superuser:
+            return User.objects.all()
         return User.objects.exclude(is_superuser=True)
     
     def get_object(self):
         obj = User.objects.get_User_object_by_public_id(self.kwargs['pk'])
         self.check_object_permissions(self.request, obj)
-        
         return obj
