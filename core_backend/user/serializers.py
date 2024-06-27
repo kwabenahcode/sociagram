@@ -21,4 +21,5 @@ class UserSerializer(serializers.ModelSerializer):
                   'is_active',
                   ]
         read_only_field = ['is_active']
+        
     
