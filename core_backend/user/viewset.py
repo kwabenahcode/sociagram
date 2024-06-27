@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework import viewsets
 
 from .models import *
@@ -11,10 +11,11 @@ from .serializers import *
 class UserViewSet(viewsets.ModelViewSet):
     """
         Querry the user model to get and return all the users excluding the superusers 
-        and also get the users by their public id
+        and also get the users by their public id.
     """
+
     http_method_names = ('patch', 'get')
-    permission_classes = (AllowAny,)
+    permission_classes = (IsAuthenticated,)
     serializer_class = UserSerializer
 
     def get_queryset(self):
