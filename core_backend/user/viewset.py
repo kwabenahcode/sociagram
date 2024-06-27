@@ -9,6 +9,10 @@ from .serializers import *
 # Create your views here.
 
 class UserViewSet(viewsets.ModelViewSet):
+    """
+        Querry the user model to get and return all the users excluding the superusers 
+        and also get the users by their public id
+    """
     http_method_names = ('patch', 'get')
     permission_classes = (AllowAny,)
     serializer_class = UserSerializer
@@ -20,5 +24,7 @@ class UserViewSet(viewsets.ModelViewSet):
     
     def get_object(self):
         obj = User.objects.get_User_object_by_public_id(self.kwargs['pk'])
+        #check if the user has the permission to perform this request
         self.check_object_permissions(self.request, obj)
+        #returns the user object
         return obj
