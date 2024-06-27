@@ -1,7 +1,7 @@
 from user.models import *
 from rest_framework import serializers
 
-class RegisterUserRerializer(serializers.ModelSerializer):
+class RegisterUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = [ 
@@ -10,6 +10,6 @@ class RegisterUserRerializer(serializers.ModelSerializer):
             'bio',
             'first_name',
             'last_name',
-            'avatar'
+            'avatar',
         ]
         extra_fields = {'password': {'write_only':'True'} }
