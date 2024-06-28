@@ -19,11 +19,11 @@ class UserManager(BaseUserManager):
         """
         try:
             if username is None:
-                raise TypeError("User must have a username")
+                raise ValueError("User must have a username")
             if email is None:
-                raise TypeError("User must have an email")
+                raise ValueError("User must have an email")
             if password is None:
-                raise TypeError("User must have a password")
+                raise ValueError("User must have a password")
         except (TypeError,ObjectDoesNotExist,ValueError) as e:
             raise e
         except Exception as e:
