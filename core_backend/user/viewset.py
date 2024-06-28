@@ -14,7 +14,7 @@ class UserViewSet(viewsets.ModelViewSet):
         and also get the users by their public id.
     """
 
-    http_method_names = ('patch', 'get')
+    http_method_names = ['patch', 'get']
     permission_classes = (IsAuthenticated,)
     serializer_class = UserSerializer
 

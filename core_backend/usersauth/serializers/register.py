@@ -1,15 +1,16 @@
-from user.models import *
+from user.models import User
 from rest_framework import serializers
 
 class RegisterUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = [ 
-            'eamil',
+            'email',
             'username',
-            'bio',
+            # 'bio',
+            # 'avatar',
             'first_name',
             'last_name',
-            'avatar',
+            'password'
         ]
         extra_fields = {'password': {'write_only':'True'} }
