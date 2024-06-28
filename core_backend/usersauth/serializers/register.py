@@ -1,10 +1,12 @@
-from user.models import User
+from user.models import *
 from rest_framework import serializers
 
 class RegisterUserSerializer(serializers.ModelSerializer):
+    id = serializers.UUIDField(source='public_id', read_only=True)
     class Meta:
         model = User
-        fields = [ 
+        fields = [
+            'id',
             'email',
             'username',
             # 'bio',

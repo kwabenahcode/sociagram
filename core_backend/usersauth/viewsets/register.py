@@ -56,6 +56,9 @@ class RegisterUserViewSet(viewsets.ViewSet):
                 )
             user = self.create_user(email=email, username=username, password=password)
             user.save()
+
+            user_data = self.serializer_class(user).data
+
             refresh = RefreshToken.for_user(user)
             res = {
                 'refresh': str(refresh),
@@ -65,7 +68,7 @@ class RegisterUserViewSet(viewsets.ViewSet):
             return Response(
                 {
                     'status': "success",
-                    'user': serializer.data,
+                    'user': user_data,
                     'refresh':res['refresh'],
                     'token':res['access'],
                     "detail": 'Successfully created your account'
