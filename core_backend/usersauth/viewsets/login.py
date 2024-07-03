@@ -1,4 +1,4 @@
-from serializers.login import LoginSerializer
+from usersauth.serializers.login import LoginSerializer
 from rest_framework import viewsets, status
 from rest_framework.permissions import AllowAny
 from user.models import *
@@ -37,7 +37,9 @@ class LoginViewSet(viewsets.ViewSet):
                     {
                         'status': "success",
                         'detail': 'You have successfully Logged in',
-
+                        'refresh':context['refresh'],
+                        'access': context['access'],
+                        'user': serrializers.data
                     },
                     status=status.HTTP_200_OK
                 )
