@@ -4,11 +4,11 @@ from .models import *
 from django.http import Http404
 
 #The manager class defines what and how the user and superuser should be created.
-
 class UserManager(BaseUserManager):
     def get_User_object_by_public_id(self, public_id):
         try:
             instance = self.get(public_id=public_id)
+            print(instance)
             return instance
         except (ObjectDoesNotExist,ValueError, TypeError):
             return Http404
